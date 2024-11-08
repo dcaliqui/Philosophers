@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	t_philo_data	data;
 
 	number_of_philosophers = atoi(argv[1]);
+	params.num_philos = atoi(argv[1]);
 	params.start_time = get_time_in_ms();
 	params.simulation_ended = 0;
 	if (parse_arguments(argc, argv, &params) != 0)

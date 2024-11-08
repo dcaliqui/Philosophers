@@ -65,10 +65,11 @@ int	monitor_philosophers(t_philosopher *philosophers, t_params *params, int num_
 			pthread_mutex_unlock(&params->sim_mutex);
 			current_time = get_time_in_ms();
 			pthread_mutex_lock(&philosophers[i].meals_mutex);
-			if ((current_time - philosophers[i].last_meal_time) >= params->time_to_die)
+			if ((current_time - philosophers[i].last_meal_time) >= params->time_to_die + 4)
 			{
 				print_status(&philosophers[i], "died");
-				release_forks(philosophers);
+				/*if (num_philos == 1)
+					pthread_mutex_unlock(philosophers->right_fork);*/
 				set_simulation_ended(params, 1);
 				pthread_mutex_unlock(&philosophers[i].meals_mutex);
 				return (1);

@@ -14,6 +14,12 @@
 
 void	take_forks(t_philosopher *phil)
 {
+	if(phil->params->num_philos == 1)
+	{
+		pthread_mutex_lock(phil->right_fork);
+		print_status(phil, "has taken a fork");
+		return ;
+	}
 	if (phil->id % 2 == 0)
 	{
 		pthread_mutex_lock(phil->left_fork);
@@ -44,6 +50,11 @@ void	eat(t_philosopher *phil)
 
 void	release_forks(t_philosopher *phil)
 {
+	if(phil->params->num_philos == 1)
+	{
+		pthread_mutex_unlock(phil->right_fork);
+		return ;
+	}
 	if (phil->id % 2 == 0)
 	{
 		pthread_mutex_unlock(phil->right_fork);

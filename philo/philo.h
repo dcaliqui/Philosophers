@@ -27,6 +27,7 @@ typedef struct s_params
 	int				number_of_meals;
 	long			start_time;
 	int				simulation_ended;
+	int				num_philos;
 	pthread_mutex_t	sim_mutex;
 }	t_params;
 
